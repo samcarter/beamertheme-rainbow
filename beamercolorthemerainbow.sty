@@ -1,0 +1,68 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% The rainbow colour theme
+% A beamer color theme which alternates theme colours on every frame
+% Maintained by samcarter
+%
+% Project repository and bug tracker:
+% https://github.com/samcarter/beamertheme-rainbow
+%
+% Released under the LaTeX Project Public License v1.3c or later
+% See http://www.latex-project.org/lppl.txt
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ProvidesPackage{beamercolorthemerainbow}[2023/06/28 version v0.1 Beamer colour theme with alternating theme colours]
+
+\mode<presentation>
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Default colours
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{rainbow@0}{HTML}{e50000}
+\definecolor{rainbow@1}{HTML}{ff8d00}
+\definecolor{rainbow@2}{HTML}{ffee00}
+\definecolor{rainbow@3}{HTML}{028121}
+\definecolor{rainbow@4}{HTML}{004cff}
+\definecolor{rainbow@5}{HTML}{770088}
+\colorlet{beamer@structure@color}{rainbow@0}
+\setbeamercolor{structure}{fg=beamer@structure@color}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Reading theme options
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareOptionBeamer{colors}{\def\rainbow@colors{#1}}
+\ExecuteOptionsBeamer{colors={rainbow@0,rainbow@1,rainbow@2,rainbow@3,rainbow@4,rainbow@5}}
+\ProcessOptionsBeamer
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Defining colours
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ExplSyntaxOn
+
+% list to store colour list
+\clist_new:N \l_rainbow_clist
+\clist_set:Nx \l_rainbow_clist \rainbow@colors
+
+% setting colour based on frame number
+\BeforeBeginEnvironment{frame}{%
+  \colorlet{beamer@structure@color}{
+    \clist_item:Nn \l_rainbow_clist {
+      \int_eval:n {
+        \int_mod:nn { \insertframenumber }{ 
+          \clist_count:N \l_rainbow_clist
+        } + 1
+      }
+    }
+  }
+}
+
+\ExplSyntaxOff
+
+\mode
+<all>
