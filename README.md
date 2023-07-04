@@ -1,8 +1,8 @@
 # beamertheme-rainbow
 
-Beamer colour theme with alternating theme colours
+A beamer colour theme which alternates theme colours on every frame
 
-Current version: 2023/06/28 version v0.1
+Current version: 2023/07/04 version v0.1
 
 This project is licensed under the LaTeX Project Public License v1.3c or later, see http://www.latex-project.org/lppl.txt
 

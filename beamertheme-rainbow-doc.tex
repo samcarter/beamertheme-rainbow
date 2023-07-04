@@ -1,0 +1,195 @@
+% !TeX TS-program = latexmk -time -pdf -pdflatex="pdflatex -synctex=1 -interaction=nonstopmode -shell-escape %%O %%S" %   | txs:///view-log | txs:///view-pdf 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Documentation for the rainbow colour theme
+% A beamer colour theme which alternates theme colours on every frame
+% Maintained by samcarter
+%
+% Project repository and bug tracker:
+% https://github.com/samcarter/beamertheme-rainbow
+%
+% Released under the LaTeX Project Public License v1.3c or later
+% See http://www.latex-project.org/lppl.txt
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[parskip=half]{scrartcl}
+
+% packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}	
+\usepackage[utf8]{inputenc}		
+\usepackage[english]{babel}
+\let\hrulefillx\hrulefill
+\usepackage[bitstream-charter]{mathdesign}
+\let\hrulefill\hrulefillx
+\usepackage[most]{tcolorbox}
+\usepackage[paper=a4paper,hmargin=2.9cm,vmargin=2.5cm]{geometry}
+\usepackage{scrlayer-scrpage}
+\usepackage{gradient-text} 
+\usepackage[colorlinks=true,breaklinks=true,urlcolor=blendedblue,linkcolor=blendedblue,citecolor=blendedblue,filecolor=blendedblue]{hyperref}
+
+% customisation %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{blendedblue}{rgb}{0.2,0.2,0.7}
+\addtokomafont{sectioning}{\color{blendedblue}}
+\addtokomafont{date}{\normalsize}
+\addtokomafont{author}{\normalsize}
+\renewcommand*\dictumwidth{0.35\linewidth}
+\renewcommand*{\dictumrule}{\vskip1ex}
+\renewcommand*{\dictumauthorformat}[1]{#1}
+
+\lstdefinestyle{tcolorboxstyle}{%
+	language={[latex]TeX},
+	tabsize=2,
+	breaklines,
+	basicstyle=\ttfamily,
+	columns=fullflexible,
+}
+
+\tcbset{%
+  toptitle=1mm,
+  left=2mm,
+  title={Example},
+  fonttitle=\large\sffamily,
+  colbacktitle=blendedblue!75!black,
+	colframe=blendedblue!75!black,
+  colback=blendedblue!75!black!10!white,
+  boxrule=0cm,
+  frame hidden,
+  arc=1.3mm,
+	arc=2mm,
+	sidebyside,
+	listing options={style=tcolorboxstyle},
+	bottom=0pt, 
+	top=0pt,
+  lower separated=false,
+  comment style={scale=2},
+  enhanced,
+  drop fuzzy shadow=black!90,
+  title code app={
+    \shade[top color=blendedblue!75!black,bottom color=blendedblue!75!black!10!white] (title.south west) rectangle ([yshift=-1mm]title.south east); 
+  }        
+}
+
+\lstset{style=tcolorboxstyle}
+
+\newcommand{\prefix}{./build}
+\tcbset{
+  compilable listing/.style={listing file={\prefix/\jobname-listing-\thetcblistingcount.tex}},
+  run pdflatex/.style={run@system@command={cd\space \prefix;\space pdflatex}{\jobname-listing-\thetcblistingcount.tex}},%
+}
+
+% meta %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{\texorpdfstring{\gradientRGB{The rainbow beamer colour theme}{255,128,51}{51,51,255}}{The rainbow beamer coloir theme}}
+\subtitle{A beamer colour theme which alternates theme colours on every frame}
+\author{%
+	\texorpdfstring{
+		\texttt{samcarter}\\
+		\url{https://github.com/samcarter/beamertheme-rainbow}\\
+%		\url{https://www.ctan.org/pkg/beamertheme-rainbow}
+	}{samcarter}}
+\date{Version v0.1 \textendash{} 2023/07/04}
+
+\begin{document}
+\maketitle
+
+\dictum[Marc Chagall]{Colour is all. When colour is right, form is right. Colour is everything, colour is vibration like music; everything is vibration.}
+
+\section{Introduction}
+\label{intro}
+
+The rainbow beamer colour theme will bring more colours to your presentation. It works similarly to the structure beamer colour theme, but instead of having just one theme colour throughout the whole presentation, the rainbow beamer colour theme will cycle through a list of colors and change the theme colour on every frame. 
+
+By default, it will cycle through colours of the rainbow (hence the name), but a custom set of colours is also possible.
+
+%The package is included in \TeX{}Live and MiK\TeX\ and available from \textsc{CTAN} (\url{https://www.ctan.org/pkg/beamertheme-tcolorbox}). 
+The development version of this package is located at \url{https://github.com/samcarter/beamertheme-rainbow}. If you have any problems, ideas or other feedback, please make constructive use of the issue tracker.
+
+Copyright \raisebox{0.2em}{\tiny\fontfamily{cmr}\selectfont\textcopyright} \texttt{samcarter}. Permission is granted to copy, distribute and\slash or modify this software under the terms of the LaTeX project public licence, version 1.3c or later \url{http://www.latex-project.org/lppl.txt}.
+
+\section{Usage}
+
+The basic usage is fairly simple. After choosing a beamer theme, one can load the rainbow beamer colour theme  via 
+\begin{tcolorbox}[title={}]
+\begin{lstlisting}
+\usecolortheme{rainbow}
+\end{lstlisting}
+\end{tcolorbox}
+
+This will work with most of the themes which are provided by the beamer class as well some third party themes. Notable exceptions are the \lstinline|AnnArbor| and \lstinline|CambridgeUS| themes.
+
+\newpage
+
+This basic usage will colour frames in alternating rainbow colours:
+\begin{tcblisting}{
+  listing and comment,
+  pdf comment,
+  freeze pdf,
+  compilable listing,
+  run pdflatex,
+  comment={
+    \begin{tikzpicture}
+      \foreach \i in {1,...,6}{%
+        \node at (0.4*\i,-0.7*\i) {\includegraphics[page=\i,width=4cm]{beamertheme-rainbow-doc-listing-1.pdf}};
+      }
+    \end{tikzpicture}
+  },
+  title={Basic example}
+}
+\documentclass{beamer}
+
+\usetheme{Berkeley}
+\usecolortheme{rainbow}
+
+\begin{document}
+
+% just for this test example
+\ExplSyntaxOn
+\prg_replicate:nn{6}{\frame{}}
+\ExplSyntaxOff
+
+\end{document}
+\end{tcblisting}
+
+As pretty as rainbow colours are, there might be some users who would like to choose their own colours. This can be done with the \lstinline|colors={...}| option which accepts a comma separated list of colours. The colours can be predefined colours e.g. from the \lstinline|xcolor| package, user-defined colours or (for more fun) from the \lstinline|xkcdcolors| package.
+
+\begin{tcblisting}{
+  listing and comment,
+  pdf comment,
+  freeze pdf,
+  compilable listing,
+  run pdflatex,
+  comment={
+    \begin{tikzpicture}
+      \foreach \i in {1,...,6}{%
+        \node at (0.4*\i,-0.7*\i) {\includegraphics[page=\i,width=4cm]{beamertheme-rainbow-doc-listing-2.pdf}};
+      }
+    \end{tikzpicture}
+  },
+  title={\strut Custom colours}
+}
+\documentclass{beamer}
+
+\usetheme{Copenhagen}
+\usepackage{xkcdcolors}
+\definecolor{mycolor}
+    {RGB}{127,0,127}
+\usecolortheme[
+  colors={
+    orange,
+    mycolor,
+    xkcdVibrantBlue
+  }
+]{rainbow}
+
+\begin{document}
+
+% just for this test example
+\ExplSyntaxOn
+\prg_replicate:nn{6}{\frame{\frametitle{title}}}
+\ExplSyntaxOff
+	
+\end{document}
+\end{tcblisting}
+
+\end{document}
+

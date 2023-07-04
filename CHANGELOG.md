@@ -4,7 +4,7 @@
 
 ### New
 
-- A Beamer colour theme with alternating theme colours
+- A beamer colour theme which alternates theme colours on every frame
 
 ------
 
