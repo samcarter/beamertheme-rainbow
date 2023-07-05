@@ -25,8 +25,43 @@
 \usepackage[most]{tcolorbox}
 \usepackage[paper=a4paper,hmargin=2.9cm,vmargin=2.5cm]{geometry}
 \usepackage{scrlayer-scrpage}
-\usepackage{gradient-text} 
 \usepackage[colorlinks=true,breaklinks=true,urlcolor=blendedblue,linkcolor=blendedblue,citecolor=blendedblue,filecolor=blendedblue]{hyperref}
+
+% rainbow text (based on the gradient-text package)
+\makeatletter
+\ExplSyntaxOn
+\clist_new:N\l_gtext_First_clist
+\clist_new:N\l_gtext_Last_clist
+\int_new:N\l_gtext_MaxIndex_int
+\int_new:N\l_gtext_Ratio_int
+\newcommand{\gr@dient}[8]{
+  \int_set:Nn\l_gtext_MaxIndex_int{\int_eval:n{\str_count:n{#1}}}
+  \int_step_inline:nnn{1}{\l_gtext_MaxIndex_int}{
+      \exp_args:Ne\str_if_eq:nnTF{\str_item:Nn{#1}{##1}}{~}{}{
+        \int_set:Nn\l_gtext_Ratio_int{\int_eval:n{\l_gtext_Ratio_int+1}}
+      }
+        \color_select:nn{#8}{
+          \int_eval:n{(\int_use:N\l_gtext_Ratio_int*#5+(\l_gtext_MaxIndex_int-##1)*#2)/\l_gtext_MaxIndex_int},
+          \int_eval:n{(\int_use:N\l_gtext_Ratio_int*#6+(\l_gtext_MaxIndex_int-##1)*#3)/\l_gtext_MaxIndex_int},
+          \int_eval:n{(\int_use:N\l_gtext_Ratio_int*#7+(\l_gtext_MaxIndex_int-##1)*#4)/\l_gtext_MaxIndex_int}
+      }\str_item:Nn{#1}{##1}
+  }
+}
+
+\NewDocumentCommand\gradient{mmmm}{{
+  \clist_set:Nn\l_gtext_First_clist {#3}
+  \clist_set:Nn\l_gtext_Last_clist {#4}
+  \gr@dient{#2}
+  {\clist_item:Nn\l_gtext_First_clist{1}}
+  {\clist_item:Nn\l_gtext_First_clist{2}}
+  {\clist_item:Nn\l_gtext_First_clist{3}}
+  {\clist_item:Nn\l_gtext_Last_clist{1}}
+  {\clist_item:Nn\l_gtext_Last_clist{2}}
+  {\clist_item:Nn\l_gtext_Last_clist{3}}
+  {#1}
+}}
+\ExplSyntaxOff
+\makeatother
 
 % customisation %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \definecolor{blendedblue}{rgb}{0.2,0.2,0.7}
@@ -79,13 +114,13 @@
 }
 
 % meta %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{\texorpdfstring{\gradientRGB{The rainbow beamer colour theme}{255,128,51}{51,51,255}}{The rainbow beamer coloir theme}}
+\title{\texorpdfstring{\gradient{HSB}{The rainbow beamer colour theme}{0,240,200}{240,240,200}}{The rainbow beamer coloir theme}}
 \subtitle{A beamer colour theme which alternates theme colours on every frame}
 \author{%
 	\texorpdfstring{
 		\texttt{samcarter}\\
 		\url{https://github.com/samcarter/beamertheme-rainbow}\\
-%		\url{https://www.ctan.org/pkg/beamertheme-rainbow}
+		\url{https://www.ctan.org/pkg/beamertheme-rainbow}
 	}{samcarter}}
 \date{Version v0.1 \textendash{} 2023/07/04}
 
@@ -101,7 +136,7 @@ The rainbow beamer colour theme will bring more colours to your presentation. It
 
 By default, it will cycle through colours of the rainbow (hence the name), but a custom set of colours is also possible.
 
-%The package is included in \TeX{}Live and MiK\TeX\ and available from \textsc{CTAN} (\url{https://www.ctan.org/pkg/beamertheme-tcolorbox}). 
+The package is included in \TeX{}Live and MiK\TeX\ and available from \textsc{CTAN} (\url{https://www.ctan.org/pkg/beamertheme-tcolorbox}). 
 The development version of this package is located at \url{https://github.com/samcarter/beamertheme-rainbow}. If you have any problems, ideas or other feedback, please make constructive use of the issue tracker.
 
 Copyright \raisebox{0.2em}{\tiny\fontfamily{cmr}\selectfont\textcopyright} \texttt{samcarter}. Permission is granted to copy, distribute and\slash or modify this software under the terms of the LaTeX project public licence, version 1.3c or later \url{http://www.latex-project.org/lppl.txt}.
@@ -117,9 +152,8 @@ The basic usage is fairly simple. After choosing a beamer theme, one can load th
 
 This will work with most of the themes which are provided by the beamer class as well some third party themes. Notable exceptions are the \lstinline|AnnArbor| and \lstinline|CambridgeUS| themes.
 
-\newpage
-
 This basic usage will colour frames in alternating rainbow colours:
+\nopagebreak
 \begin{tcblisting}{
   listing and comment,
   pdf comment,
