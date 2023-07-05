@@ -219,7 +219,9 @@ As pretty as rainbow colours are, there might be some users who would like to ch
 
 % just for this test example
 \ExplSyntaxOn
-\prg_replicate:nn{6}{\frame{\frametitle{title}}}
+\prg_replicate:nn{6}{
+  \frame{\frametitle{title}}
+}
 \ExplSyntaxOff
 	
 \end{document}
