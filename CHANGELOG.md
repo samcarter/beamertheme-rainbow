@@ -4,6 +4,14 @@
 
 ### New
 
+### Changed
+
+### Fixed
+
+## [v0.1]
+
+### New
+
 - A beamer colour theme which alternates theme colours on every frame
 
 ------
