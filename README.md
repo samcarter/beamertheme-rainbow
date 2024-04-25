@@ -31,4 +31,4 @@ content...
 \end{document}
 ```
 
-For more details, please consult the [package documentation](https://github.com/samcarter/beamertheme-rainbow/blob/main/documentation.pdf).
+For more details, please consult the [package documentation](https://github.com/samcarter/beamertheme-rainbow/blob/main/DOCUMENTATION.pdf).
