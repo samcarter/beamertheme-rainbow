@@ -1,8 +1,8 @@
 # beamertheme-rainbow
 
-[![GitHub](https://img.shields.io/github/license/samcarter/beamertheme-rainbow.svg?color=blue)](http://www.latex-project.org/lppl.txt)
-[![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/samcarter/beamertheme-rainbow.svg?label=current%20version)](https://github.com/samcarter/beamertheme-rainbow/releases/latest)
-[![CTAN](https://img.shields.io/ctan/v/beamertheme-rainbow.svg)](https://ctan.org/pkg/beamertheme-rainbow)
+[![License](https://img.shields.io/github/license/samcarter/beamertheme-rainbow.svg?color=blue)](http://www.latex-project.org/lppl.txt)
+[![GitHub tag](https://img.shields.io/github/tag/samcarter/beamertheme-rainbow.svg?label=current%20version&color=blue)](https://github.com/samcarter/beamertheme-rainbow/releases/latest)
+[![CTAN](https://img.shields.io/ctan/v/beamertheme-rainbow.svg?color=blue)](https://ctan.org/pkg/beamertheme-rainbow)
 
 A beamer colour theme which alternates theme colours on every frame.
 
