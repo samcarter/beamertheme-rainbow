@@ -1,4 +1,4 @@
-% !TeX root = test.tex
+% !TeX root = ./testing/test.tex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % The rainbow colour theme 
@@ -36,7 +36,8 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \DeclareOptionBeamer{colors}{\def\rainbow@colors{#1}}
-\ExecuteOptionsBeamer{colors={rainbow@0,rainbow@1,rainbow@2,rainbow@3,rainbow@4,rainbow@5}}
+\DeclareOptionBeamer{auto}{\def\rainbow@auto{#1}}
+\ExecuteOptionsBeamer{colors={rainbow@0,rainbow@1,rainbow@2,rainbow@3,rainbow@4,rainbow@5},auto=frame}
 \ProcessOptionsBeamer
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -50,18 +51,54 @@
 \clist_new:N \l_rainbow_clist
 \clist_set:Nx \l_rainbow_clist \rainbow@colors
 
-% setting colour based on frame number
-\pretocmd{\beamer@@@frame}{
+\newcounter{rainbow@count}
+
+% macro to switch to next colour
+\newcommand{\rainbow}{
+  \addtocounter{rainbow@count}{1}
   \colorlet{beamer@structure@color}{
     \clist_item:Nn \l_rainbow_clist {
       \int_eval:n {
-        \int_mod:nn { \insertframenumber }{ 
+        \int_mod:nn { \value{rainbow@count} }{ 
           \clist_count:N \l_rainbow_clist
         } + 1
       }
     }
   }
-}{}{}
+}
+
+% switch colour at start of frame
+\str_if_eq:eeT { \rainbow@auto } { frame } { 
+  \pretocmd{\beamer@@@frame}{
+    \ifnum\thepage>1
+      \rainbow
+    \fi
+  }{}{}
+}
+
+% switch colour at start of section
+\str_if_eq:eeT { \rainbow@auto } { section } { 
+  \AddToHook{cmd/section/before}{%
+    \ifnum\thepage>1
+      \rainbow
+    \fi
+  }
+}
+
+% switch colour at start of subsection
+\str_if_eq:eeT { \rainbow@auto } { subsection } { 
+  \AddToHook{cmd/subsection/before}{%
+    \ifnum\thepage>1
+      \rainbow
+    \fi
+  }
+}
+
+% initially use first colour from the list 
+\AtBeginDocument{
+  \setcounter{rainbow@count}{-1}
+  \rainbow
+}
 
 \ExplSyntaxOff
 

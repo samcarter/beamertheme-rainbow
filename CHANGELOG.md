@@ -4,10 +4,12 @@
 
 ### New
 
+- new macro `\rainbow` to manually change to the next colour
+- new option `auto=...` to change automatic colour changing from every frame to every section or subsection
+
 ### Changed
 
 ### Fixed
-
 
 ## [v0.2]
 
