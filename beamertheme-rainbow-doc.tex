@@ -22,6 +22,10 @@
 % arara: --> }
 \documentclass{scrartcl}
 
+\usepackage[
+  themecolor=samlila
+]{\jobname-settings}
+
 % meta %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{\texorpdfstring{\gradient{HSB}{The rainbow beamer colour theme}{0,240,200}{240,240,200}}{The rainbow beamer colour theme}}
 \subtitle{A beamer colour theme which alternates theme colours on every frame}
@@ -29,13 +33,10 @@
   \texorpdfstring{
     \texttt{samcarter}\\
     \url{https://github.com/samcarter/beamertheme-rainbow}\\
-    \url{https://www.ctan.org/pkg/beamertheme-rainbow}
+    \url{https://ctan.org/pkg/beamertheme-rainbow}
   }{samcarter}}
 \date{Version v1.0 \textendash{} 2024/11/14}
-
-\usepackage[
-  themecolor=samlila
-]{\jobname-settings}
+\packagename{beamertheme-rainbow}
 
 % rainbow text (based on the gradient-text package) %%%%%%%%%%%%%%%%%
 \makeatletter
@@ -92,14 +93,11 @@
 \section{Introduction}
 \label{intro}
 
-The rainbow beamer colour theme will bring more colours to your presentation. It works similarly to the structure beamer colour theme, but instead of having just one theme colour throughout the whole presentation, the rainbow beamer colour theme will cycle through a list of colours and change the theme colour on every frame or (sub)section.
+The rainbow beamer colour theme will bring more colours to your presentation. It works similarly to the structure beamer colour theme, but instead of having just one theme colour throughout the whole presentation, the rainbow beamer colour theme will cycle through a list of colours and change the theme colour on every frame or (sub)section. By default, it will cycle through colours of the rainbow (hence the name), but a custom set of colours is also possible.
 
-By default, it will cycle through colours of the rainbow (hence the name), but a custom set of colours is also possible.
+\blurb
 
-The package is included in \texlive and \miktex and available from \CTAN (\url{https://www.ctan.org/pkg/beamertheme-tcolorbox}).
-The development version of this package is located at \url{https://github.com/samcarter/beamertheme-rainbow}. If you have any problems, ideas or other feedback, please make constructive use of the issue tracker.
-
-Copyright \raisebox{0.2em}{\tiny\fontfamily{cmr}\selectfont\textcopyright} \texttt{samcarter}. Permission is granted to copy, distribute and\slash or modify this software under the terms of the LaTeX project public licence, version 1.3c or later \url{https://www.latex-project.org/lppl.txt}.
+\enlargethispage{2\baselineskip}
 
 \section{Usage}
 
