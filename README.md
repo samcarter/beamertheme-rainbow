@@ -21,14 +21,26 @@ The project repository, including a bug tracker, can be found at https://github.
 \begin{document}
 
 \begin{frame}
-content...
 \end{frame}
 
 \begin{frame}
-content...
+\end{frame}
+
+\begin{frame}
+\end{frame}
+
+\begin{frame}
+\end{frame}
+
+\begin{frame}
+\end{frame}
+
+\begin{frame}
 \end{frame}
 
 \end{document}
 ```
+
+![](https://raw.githubusercontent.com/samcarter/beamertheme-rainbow/main/example/beamertheme-rainbow-example.png)
 
 For more details, please consult the [package documentation](https://github.com/samcarter/beamertheme-rainbow/blob/main/DOCUMENTATION.pdf).
