@@ -111,7 +111,7 @@ This basic usage will colour frames in alternating rainbow colours:
   pdf comment,
   freeze pdf,
   compilable listing,
-  run latexmk,
+  run latexmk={-g- -pdf -cd},
   comment={
     \begin{tikzpicture}
       \foreach \i in {1,...,6}{%
@@ -146,7 +146,7 @@ As pretty as rainbow colours are, there might be some users who would like to ch
   pdf comment,
   freeze pdf,
   compilable listing,
-  run latexmk,
+  run latexmk={-g- -pdf -cd},
   comment={
     \begin{tikzpicture}
       \foreach \i in {1,...,6}{%
@@ -191,7 +191,7 @@ Changing the colour on every frame might be too frequent. For these use cases, t
   pdf comment,
   freeze pdf,
   compilable listing,
-  run latexmk,
+  run latexmk={-g- -pdf -cd},
   comment={
     \begin{tikzpicture}
       \foreach \i in {1,...,3}{%
@@ -230,7 +230,7 @@ It is also possible to manually change to the next colour using the macro \samin
   pdf comment,
   freeze pdf,
   compilable listing,
-  run latexmk,
+  run latexmk={-g- -pdf -cd},
   comment={
     \begin{tikzpicture}
       \foreach \i in {1,...,3}{%
