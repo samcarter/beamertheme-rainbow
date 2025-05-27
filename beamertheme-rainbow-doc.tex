@@ -107,19 +107,15 @@ This will work with most of the themes which are provided by the beamer class as
 This basic usage will colour frames in alternating rainbow colours:
 \nopagebreak
 \begin{tcblisting}{
-  listing and comment,
-  pdf comment,
-  freeze pdf,
-  compilable listing,
-  run latexmk={-g- -pdf -cd},
+  title={Basic example},
+  compilable listing sam,
   comment={
     \begin{tikzpicture}
       \foreach \i in {1,...,6}{%
-        \node at (0.35*\i,-0.7*\i) {\includegraphics[page=\i,width=3.7cm]{beamertheme-rainbow-doc-listing-1.pdf}};
+        \node at (0.35*\i,-0.7*\i) {\includegraphics[page=\i,width=3.7cm]{\jobname-listing-\thetcblistingcount}};
       }
     \end{tikzpicture}
   },
-  title={Basic example}
 }
   \documentclass{beamer}
   
@@ -142,19 +138,15 @@ This basic usage will colour frames in alternating rainbow colours:
 As pretty as rainbow colours are, there might be some users who would like to choose their own colours. This can be done with the \saminline|colors={...}| option which accepts a comma separated list of colours. The colours can be predefined colours e.g. from the \saminline|xcolor| package, user-defined colours or (for more fun) from the \saminline|xkcdcolors| package.
 
 \begin{tcblisting}{
-  listing and comment,
-  pdf comment,
-  freeze pdf,
-  compilable listing,
-  run latexmk={-g- -pdf -cd},
+  title={\strut Custom colours},
+  compilable listing sam,
   comment={
     \begin{tikzpicture}
       \foreach \i in {1,...,6}{%
-        \node at (0.35*\i,-0.7*\i) {\includegraphics[page=\i,width=3.7cm]{beamertheme-rainbow-doc-listing-2.pdf}};
+        \node at (0.35*\i,-0.7*\i) {\includegraphics[page=\i,width=3.7cm]{\jobname-listing-\thetcblistingcount}};
       }
     \end{tikzpicture}
   },
-  title={\strut Custom colours}
 }
   \documentclass{beamer}
   
@@ -187,19 +179,15 @@ As pretty as rainbow colours are, there might be some users who would like to ch
 Changing the colour on every frame might be too frequent. For these use cases, the theme offers the option \saminline|auto=...|, which allows the user to control when automatic colour changes should happen. Possible values are \saminline|frame| (default), \saminline|section| and \saminline|subsection|. All other values will disable automatic colour changes.
 
 \begin{tcblisting}{
-  listing and comment,
-  pdf comment,
-  freeze pdf,
-  compilable listing,
-  run latexmk={-g- -pdf -cd},
+  title={\strut Automatic colour changing},
+  compilable listing sam,
   comment={
     \begin{tikzpicture}
       \foreach \i in {1,...,3}{%
-        \node at (0.35*\i,-0.7*\i) {\includegraphics[page=\i,width=3.7cm]{beamertheme-rainbow-doc-listing-3.pdf}};
+        \node at (0.35*\i,-0.7*\i) {\includegraphics[page=\i,width=3.7cm]{\jobname-listing-\thetcblistingcount}};
       }
     \end{tikzpicture}
   },
-  title={\strut Automatic colour changing}
 }
   \documentclass{beamer}
   
@@ -226,19 +214,15 @@ Changing the colour on every frame might be too frequent. For these use cases, t
 It is also possible to manually change to the next colour using the macro \saminline|\rainbow|:
 
 \begin{tcblisting}{
-  listing and comment,
-  pdf comment,
-  freeze pdf,
-  compilable listing,
-  run latexmk={-g- -pdf -cd},
+  title={\strut Manual colour changing},
+  compilable listing sam,
   comment={
     \begin{tikzpicture}
       \foreach \i in {1,...,3}{%
-        \node at (0.35*\i,-0.7*\i) {\includegraphics[page=\i,width=3.7cm]{beamertheme-rainbow-doc-listing-4.pdf}};
+        \node at (0.35*\i,-0.7*\i) {\includegraphics[page=\i,width=3.7cm]{\jobname-listing-\thetcblistingcount}};
       }
     \end{tikzpicture}
   },
-  title={\strut Manual colour changing}
 }
   \documentclass{beamer}
   
