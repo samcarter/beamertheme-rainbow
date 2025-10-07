@@ -1,7 +1,7 @@
 % !TeX root = ./testing/test.tex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% The rainbow colour theme 
+% The rainbow colour theme
 % A beamer colour theme which alternates theme colours on every frame
 % Maintained by samcarter
 %
@@ -48,8 +48,8 @@
 \ExplSyntaxOn
 
 % list to store colour list
-\clist_new:N \l_rainbow_clist
-\clist_set:Nx \l_rainbow_clist \rainbow@colors
+\clist_new:N \l_rainbow_color_clist
+\clist_set:NV \l_rainbow_color_clist \rainbow@colors
 
 \newcounter{rainbow@count}
 
@@ -57,10 +57,10 @@
 \newcommand{\rainbow}{
   \addtocounter{rainbow@count}{1}
   \colorlet{beamer@structure@color}{
-    \clist_item:Nn \l_rainbow_clist {
+    \clist_item:Nn \l_rainbow_color_clist {
       \int_eval:n {
-        \int_mod:nn { \value{rainbow@count} }{ 
-          \clist_count:N \l_rainbow_clist
+        \int_mod:nn { \value{rainbow@count} }{
+          \clist_count:N \l_rainbow_color_clist
         } + 1
       }
     }
@@ -68,7 +68,7 @@
 }
 
 % switch colour at start of frame
-\str_if_eq:eeT { \rainbow@auto } { frame } { 
+\str_if_eq:eeT { \rainbow@auto } { frame } {
   \pretocmd{\beamer@@@frame}{
     \ifnum\thepage>1
       \rainbow
@@ -77,7 +77,7 @@
 }
 
 % switch colour at start of section
-\str_if_eq:eeT { \rainbow@auto } { section } { 
+\str_if_eq:eeT { \rainbow@auto } { section } {
   \AddToHook{cmd/section/before}{%
     \ifnum\thepage>1
       \rainbow
@@ -86,7 +86,7 @@
 }
 
 % switch colour at start of subsection
-\str_if_eq:eeT { \rainbow@auto } { subsection } { 
+\str_if_eq:eeT { \rainbow@auto } { subsection } {
   \AddToHook{cmd/subsection/before}{%
     \ifnum\thepage>1
       \rainbow
@@ -94,7 +94,7 @@
   }
 }
 
-% initially use first colour from the list 
+% initially use first colour from the list
 \AtBeginDocument{
   \setcounter{rainbow@count}{-1}
   \rainbow
